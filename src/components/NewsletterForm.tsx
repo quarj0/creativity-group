@@ -37,26 +37,32 @@ export default function NewsletterForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 w-full sm:w-auto">
-      <input
-        type="email"
-        placeholder="you@email.com"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        className="flex-1 sm:w-56 px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-accent/50 transition-colors"
-      />
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        className="px-5 py-2.5 bg-accent hover:bg-accent-hover disabled:opacity-60 text-white text-sm font-medium rounded-lg transition-colors whitespace-nowrap flex items-center gap-1.5"
-      >
-        {status === "loading" && <Loader2 size={13} className="animate-spin" />}
-        Subscribe
-      </button>
+    <div className="flex flex-col gap-1.5 w-full sm:w-auto">
+      <form onSubmit={handleSubmit} className="flex gap-2">
+        <label htmlFor="newsletter-email" className="sr-only">
+          Email address
+        </label>
+        <input
+          id="newsletter-email"
+          type="email"
+          placeholder="you@email.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="flex-1 sm:w-56 px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-accent/50 transition-colors"
+        />
+        <button
+          type="submit"
+          disabled={status === "loading"}
+          className="px-5 py-2.5 bg-accent hover:bg-accent-hover disabled:opacity-60 text-white text-sm font-medium rounded-lg transition-colors whitespace-nowrap flex items-center gap-1.5"
+        >
+          {status === "loading" && <Loader2 size={13} className="animate-spin" />}
+          Subscribe
+        </button>
+      </form>
       {status === "error" && (
-        <p className="absolute mt-10 text-red-400 text-xs">{message}</p>
+        <p className="text-red-400 text-xs">{message}</p>
       )}
-    </form>
+    </div>
   );
 }

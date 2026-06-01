@@ -42,11 +42,11 @@ function StatCard({
       initial={{ opacity: 0, y: 30 }}
       animate={active ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-      className="flex flex-col items-center text-center p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300"
+      className="flex flex-col items-center text-center p-8 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/4 transition-colors duration-300"
     >
       <div className="text-5xl lg:text-6xl font-black text-white tabular-nums tracking-tight">
         {count.toLocaleString()}
-        <span className="text-[#f97316]">{stat.suffix}</span>
+        <span className="text-accent">{stat.suffix}</span>
       </div>
       <div className="mt-3 text-sm text-zinc-500 font-medium">{stat.label}</div>
     </motion.div>
@@ -84,7 +84,7 @@ export default function CommunityStats() {
           transition={{ duration: 0.7 }}
           className="text-center mb-20"
         >
-          <span className="text-xs text-[#f97316] font-medium tracking-widest uppercase mb-4 block">
+          <span className="text-xs text-accent font-medium tracking-widest uppercase mb-4 block">
             By the Numbers
           </span>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight">
@@ -97,7 +97,7 @@ export default function CommunityStats() {
         </motion.div>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-3 lg:grid-cols-5 gap-4">
           {COMMUNITY_STATS.map((stat, i) => (
             <StatCard key={stat.label} stat={stat} active={isInView} index={i} />
           ))}

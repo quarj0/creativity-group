@@ -73,7 +73,10 @@ export default function Events() {
                 variants={cardVariant}
                 initial="hidden"
                 animate={isInView ? "show" : "hidden"}
-                className="group relative p-6 rounded-2xl border border-white/5 bg-[#18181b] hover:border-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/40 cursor-pointer overflow-hidden"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") e.currentTarget.click(); }}
+                className="group relative p-6 rounded-2xl border border-white/5 bg-card hover:border-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/40 cursor-pointer overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
               >
                 {/* Left accent line */}
                 <div
@@ -101,7 +104,7 @@ export default function Events() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-white font-semibold text-lg mb-2 leading-snug group-hover:text-[#f97316] transition-colors">
+                  <h3 className="text-white font-semibold text-lg mb-2 leading-snug group-hover:text-accent transition-colors">
                     {event.title}
                   </h3>
 

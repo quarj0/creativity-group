@@ -35,7 +35,7 @@ export default function FeaturedProjects() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <span className="text-xs text-[#f97316] font-medium tracking-widest uppercase mb-4 block">
+            <span className="text-xs text-accent font-medium tracking-widest uppercase mb-4 block">
               Featured Projects
             </span>
             <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
@@ -48,7 +48,7 @@ export default function FeaturedProjects() {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex-shrink-0 flex items-center gap-2 text-sm text-zinc-400 hover:text-white border border-white/10 hover:border-white/20 px-5 py-2.5 rounded-xl transition-all duration-200"
+            className="shrink-0 flex items-center gap-2 text-sm text-zinc-400 hover:text-white border border-white/10 hover:border-white/20 px-5 py-2.5 rounded-xl transition-all duration-200"
           >
             View all projects
             <ArrowUpRight size={14} />
@@ -64,11 +64,14 @@ export default function FeaturedProjects() {
               variants={cardVariant}
               initial="hidden"
               animate={isInView ? "show" : "hidden"}
-              className="group relative flex flex-col rounded-2xl border border-white/5 bg-[#18181b] hover:border-white/10 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50 cursor-pointer"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") e.currentTarget.click(); }}
+              className="group relative flex flex-col rounded-2xl border border-white/5 bg-card hover:border-white/10 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
             >
               {/* Placeholder image area */}
               <div
-                className="relative h-44 overflow-hidden flex-shrink-0"
+                className="relative h-44 overflow-hidden shrink-0"
                 style={{
                   background: `linear-gradient(135deg, ${project.accent}15 0%, #09090b 100%)`,
                 }}

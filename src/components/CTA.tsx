@@ -86,16 +86,21 @@ export default function CTA() {
 
           {/* Secondary links */}
           <div className="flex items-center justify-center gap-6 text-sm text-zinc-500">
-            <button className="flex items-center gap-2 hover:text-zinc-300 transition-colors">
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-zinc-300 transition-colors"
+            >
               <GitBranch size={15} />
               Open source on GitHub
-            </button>
+            </a>
             <span className="text-zinc-700">·</span>
-            <button className="hover:text-zinc-300 transition-colors">
+            <button onClick={() => router.push("/sponsorship")} className="hover:text-zinc-300 transition-colors">
               Partner with us
             </button>
             <span className="text-zinc-700">·</span>
-            <button className="hover:text-zinc-300 transition-colors">
+            <button onClick={() => router.push("/sponsorship")} className="hover:text-zinc-300 transition-colors">
               Sponsor a hackathon
             </button>
           </div>

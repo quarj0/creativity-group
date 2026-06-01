@@ -4,7 +4,7 @@ import WhatWeDo from "@/components/WhatWeDo";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import CommunityStats from "@/components/CommunityStats";
 import Events from "@/components/Events";
-import Testimonials from "@/components/Testimonials";
+// import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
       <FeaturedProjects />
       <CommunityStats />
       <Events />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <CTA />
     </main>
   );

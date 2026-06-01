@@ -32,9 +32,9 @@ export default function Footer() {
     <footer className="border-t border-white/5 bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
         {/* Top grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 mb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10 lg:gap-8 mb-16">
           {/* Brand column */}
-          <div className="col-span-2">
+          <div className="col-span-2 sm:col-span-3 lg:col-span-2">
             {/* Logo */}
             <div className="flex items-center gap-2.5 mb-5">
               <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center font-bold text-white text-sm">
@@ -53,19 +53,22 @@ export default function Footer() {
             {/* Social links */}
             <div className="flex items-center gap-3">
               {[
-                { Icon: GitBranch, label: "GitHub" },
-                { Icon: X, label: "Twitter / X" },
-                { Icon: Globe, label: "LinkedIn" },
-                { Icon: SquarePlay, label: "YouTube" },
-                { Icon: Mail, label: "Email" },
-              ].map(({ Icon, label }) => (
-                <button
+                { Icon: GitBranch, label: "GitHub", href: "https://github.com" },
+                { Icon: X, label: "Twitter / X", href: "https://x.com" },
+                { Icon: Globe, label: "LinkedIn", href: "https://linkedin.com" },
+                { Icon: SquarePlay, label: "YouTube", href: "https://youtube.com" },
+                { Icon: Mail, label: "Email", href: "mailto:hello@creativitygroup.org" },
+              ].map(({ Icon, label, href }) => (
+                <a
                   key={label}
+                  href={href}
                   aria-label={label}
+                  target={href.startsWith("mailto") ? undefined : "_blank"}
+                  rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
                   className="w-9 h-9 rounded-lg border border-white/5 bg-white/2 hover:bg-white/6 hover:border-white/10 flex items-center justify-center text-zinc-500 hover:text-white transition-all duration-200"
                 >
                   <Icon size={15} />
-                </button>
+                </a>
               ))}
             </div>
           </div>
@@ -132,7 +135,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t border-white/5">
           <p className="text-zinc-600 text-xs">
-            © 2025 Creativity Group. Built in Ghana, for Africa.
+            © 2026 Creativity Group. Built in Ghana, for Africa.
           </p>
           <div className="flex items-center gap-6 text-xs text-zinc-600">
             <Link href="#" className="hover:text-zinc-400 transition-colors">

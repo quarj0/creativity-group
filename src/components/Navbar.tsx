@@ -29,7 +29,7 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-[#09090b]/90 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-black/50"
+            ? "bg-background/90 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-black/50"
             : "bg-transparent"
         }`}
       >
@@ -38,9 +38,10 @@ export default function Navbar() {
             {/* Logo */}
             <button
               onClick={() => handleNavClick("#home")}
+              aria-label="Creativity Group – go to home"
               className="flex items-center gap-2.5 group"
             >
-              <div className="w-9 h-9 rounded-lg bg-[#f97316] flex items-center justify-center font-bold text-white text-sm tracking-tight transition-transform group-hover:scale-105">
+              <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center font-bold text-white text-sm tracking-tight transition-transform group-hover:scale-105">
                 CG
               </div>
               <span className="font-semibold text-white text-sm hidden sm:block tracking-tight">
@@ -64,14 +65,8 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-3">
               <button
-                onClick={() => handleNavClick("#contact")}
-                className="text-sm text-zinc-400 hover:text-white transition-colors"
-              >
-                Contact
-              </button>
-              <button
                 onClick={() => handleNavClick("#community")}
-                className="px-5 py-2.5 bg-[#f97316] hover:bg-[#ea6c0a] text-white text-sm font-medium rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25"
+                className="px-5 py-2.5 bg-accent hover:bg-accent-hover text-white text-sm font-medium rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25"
               >
                 Join Community
               </button>
@@ -97,7 +92,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-[#09090b]/95 backdrop-blur-xl border-b border-white/5 lg:hidden"
+            className="fixed top-16 left-0 right-0 z-40 bg-background/95 backdrop-blur-xl border-b border-white/5 lg:hidden"
           >
             <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-2">
               {NAV_LINKS.map((link) => (
@@ -112,7 +107,7 @@ export default function Navbar() {
               <div className="pt-4 mt-2 border-t border-white/5">
                 <button
                   onClick={() => handleNavClick("#community")}
-                  className="w-full py-3 bg-[#f97316] hover:bg-[#ea6c0a] text-white text-sm font-medium rounded-lg transition-colors"
+                  className="w-full py-3 bg-accent hover:bg-accent-hover text-white text-sm font-medium rounded-lg transition-colors"
                 >
                   Join Community
                 </button>
