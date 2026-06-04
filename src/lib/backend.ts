@@ -36,7 +36,7 @@ type BackendFormResponse = {
   [key: string]: unknown;
 };
 
-const DEFAULT_BACKEND_URL = "http://127.0.0.1:8000";
+const DEFAULT_BACKEND_URL = "https://api.creativitygroup.org";
 const FORM_TIMEOUT_MS = 10000;
 
 function getBackendBaseUrl() {
