@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import Link from "next/link";
 import { ArrowUpRight, Users2, Calendar } from "lucide-react";
 import type { Project } from "@/lib/backend";
 
@@ -52,15 +53,15 @@ export default function FeaturedProjects({ projects }: { projects: Project[] }) 
               <span className="text-zinc-500">Solving real problems.</span>
             </h2>
           </motion.div>
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="shrink-0 flex items-center gap-2 text-sm text-zinc-400 hover:text-white border border-white/10 hover:border-white/20 px-5 py-2.5 rounded-xl transition-all duration-200"
-          >
-            View all projects
-            <ArrowUpRight size={14} />
-          </motion.button>
+          <motion.div initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ duration: 0.6, delay: 0.3 }} className="shrink-0">
+            <Link
+              href="/projects"
+              className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white border border-white/10 hover:border-white/20 px-5 py-2.5 rounded-xl transition-all duration-200"
+            >
+              View all projects
+              <ArrowUpRight size={14} />
+            </Link>
+          </motion.div>
         </div>
 
         {projects.length === 0 ? (
@@ -68,16 +69,10 @@ export default function FeaturedProjects({ projects }: { projects: Project[] }) 
         ) : (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {projects.map((project, i) => (
-              <motion.div
-                key={project.id}
-                custom={i}
-                variants={cardVariant}
-                initial="hidden"
-                animate={isInView ? "show" : "hidden"}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") e.currentTarget.click(); }}
-                className="group relative flex flex-col rounded-2xl border border-white/5 bg-card hover:border-white/10 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+              <motion.div key={project.id} custom={i} variants={cardVariant} initial="hidden" animate={isInView ? "show" : "hidden"}>
+              <Link
+                href={`/projects/${project.id}`}
+                className="group relative flex flex-col rounded-2xl border border-white/5 bg-card hover:border-white/10 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
               >
               {/* Placeholder image area */}
               <div
@@ -146,6 +141,7 @@ export default function FeaturedProjects({ projects }: { projects: Project[] }) 
                   </div>
                 </div>
               </div>
+              </Link>
               </motion.div>
             ))}
           </div>

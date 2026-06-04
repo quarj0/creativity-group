@@ -73,6 +73,32 @@ async function fetchBackendList<T>(path: string): Promise<T[]> {
   return unpackList((await response.json()) as BackendListResponse<T>);
 }
 
+async function fetchBackendDetail<T>(path: string): Promise<T | null> {
+  try {
+    const response = await fetch(backendUrl(path), { next: { revalidate: 300 } });
+    if (!response.ok) return null;
+    return (await response.json()) as T;
+  } catch {
+    return null;
+  }
+}
+
+export async function getAllProjects(): Promise<Project[]> {
+  try { return await fetchBackendList<Project>("/api/projects/"); } catch { return []; }
+}
+
+export async function getProject(id: number): Promise<Project | null> {
+  return fetchBackendDetail<Project>(`/api/projects/${id}/`);
+}
+
+export async function getAllEvents(): Promise<Event[]> {
+  try { return await fetchBackendList<Event>("/api/events/"); } catch { return []; }
+}
+
+export async function getEvent(id: number): Promise<Event | null> {
+  return fetchBackendDetail<Event>(`/api/events/${id}/`);
+}
+
 export async function getHomepageData() {
   const [programs, projects, events] = await Promise.allSettled([
     fetchBackendList<Program>("/api/programs/"),

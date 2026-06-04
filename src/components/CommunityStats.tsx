@@ -102,7 +102,7 @@ export default function CommunityStats({ stats = [] }: { stats?: CommunityStat[]
         </motion.div>
 
         {stats.length === 0 ? (
-          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 text-center text-sm text-zinc-500">
+          <div className="rounded-2xl border border-white/5 bg-white/2 p-8 text-center text-sm text-zinc-500">
             Community metrics have not been published yet.
           </div>
         ) : (

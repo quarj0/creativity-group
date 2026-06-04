@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 import { MapPin, Users2, ArrowUpRight, CalendarDays } from "lucide-react";
 import type { Event } from "@/lib/backend";
 
@@ -23,7 +24,7 @@ const TYPE_COLORS: Record<string, string> = {
 
 function EmptyEvents() {
   return (
-    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 text-sm text-zinc-500">
+    <div className="rounded-2xl border border-white/5 bg-white/2 p-8 text-sm text-zinc-500">
       No upcoming events have been published yet.
     </div>
   );
@@ -49,7 +50,7 @@ export default function Events({ events }: { events: Event[] }) {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <span className="text-xs text-[#f97316] font-medium tracking-widest uppercase mb-4 block">
+            <span className="text-xs text-accent font-medium tracking-widest uppercase mb-4 block">
               Upcoming Events
             </span>
             <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
@@ -59,15 +60,15 @@ export default function Events({ events }: { events: Event[] }) {
             </h2>
           </motion.div>
 
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.3 }}
-            className="flex-shrink-0 flex items-center gap-2 text-sm text-zinc-400 hover:text-white border border-white/10 hover:border-white/20 px-5 py-2.5 rounded-xl transition-all"
-          >
-            View full calendar
-            <ArrowUpRight size={14} />
-          </motion.button>
+          <motion.div initial={{ opacity: 0 }} animate={isInView ? { opacity: 1 } : {}} transition={{ delay: 0.3 }} className="shrink-0">
+            <Link
+              href="/events"
+              className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white border border-white/10 hover:border-white/20 px-5 py-2.5 rounded-xl transition-all"
+            >
+              View full calendar
+              <ArrowUpRight size={14} />
+            </Link>
+          </motion.div>
         </div>
 
         {events.length === 0 ? (
@@ -77,16 +78,10 @@ export default function Events({ events }: { events: Event[] }) {
             {events.map((event, i) => {
               const typeColor = TYPE_COLORS[event.type] || "#f97316";
               return (
-                <motion.div
-                  key={event.id}
-                  custom={i}
-                  variants={cardVariant}
-                  initial="hidden"
-                  animate={isInView ? "show" : "hidden"}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") e.currentTarget.click(); }}
-                  className="group relative p-6 rounded-2xl border border-white/5 bg-card hover:border-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/40 cursor-pointer overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+                <motion.div key={event.id} custom={i} variants={cardVariant} initial="hidden" animate={isInView ? "show" : "hidden"}>
+                <Link
+                  href={`/events/${event.id}`}
+                  className="group relative p-6 rounded-2xl border border-white/5 bg-card hover:border-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/40 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60 block"
                 >
                 {/* Left accent line */}
                 <div
@@ -140,6 +135,7 @@ export default function Events({ events }: { events: Event[] }) {
                 <div className="absolute top-5 right-5 w-7 h-7 rounded-full bg-white/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <ArrowUpRight size={13} className="text-zinc-300" />
                 </div>
+                </Link>
                 </motion.div>
               );
             })}

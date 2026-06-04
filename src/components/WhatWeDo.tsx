@@ -41,7 +41,7 @@ const stagger = {
 
 function EmptyPrograms() {
   return (
-    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 text-sm text-zinc-500">
+    <div className="rounded-2xl border border-white/5 bg-white/2 p-8 text-sm text-zinc-500">
       No programs have been published yet.
     </div>
   );
@@ -67,7 +67,7 @@ export default function WhatWeDo({ programs }: { programs: Program[] }) {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
           className="max-w-xl mb-16"
         >
-          <span className="text-xs text-[#f97316] font-medium tracking-widest uppercase mb-4 block">
+          <span className="text-xs text-accent font-medium tracking-widest uppercase mb-4 block">
             What We Do
           </span>
           <h2 className="text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.1]">
@@ -92,7 +92,7 @@ export default function WhatWeDo({ programs }: { programs: Program[] }) {
                 <motion.div
                   key={item.id ?? item.title}
                   variants={fadeUp}
-                  className={`group relative p-6 rounded-2xl border border-white/5 bg-gradient-to-br ${item.color} hover:border-white/10 transition-all duration-300 cursor-default overflow-hidden`}
+                  className={`group relative p-6 rounded-2xl border border-white/5 bg-linear-to-br ${item.color} hover:border-white/10 transition-all duration-300 cursor-default overflow-hidden`}
                 >
                   {/* Hover glow */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/[0.02] rounded-2xl" />
