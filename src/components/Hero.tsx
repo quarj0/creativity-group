@@ -146,7 +146,7 @@ export default function Hero() {
           {[
             { value: "2,400+", label: "Community Members" },
             { value: "180+", label: "Projects Shipped" },
-            { value: "12", label: "Campuses Across Ghana" },
+            { value: "5", label: "Campuses Across Ghana" },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl lg:text-4xl font-bold text-white tabular-nums">

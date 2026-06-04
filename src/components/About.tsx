@@ -32,7 +32,7 @@ const pillars = [
   {
     icon: Globe,
     title: "Community-Driven",
-    desc: "2,400+ members across 12 campuses. The network is the superpower.",
+    desc: "2,400+ members across 5 campuses. The network is the superpower.",
   },
   {
     icon: Target,
@@ -59,7 +59,7 @@ export default function About() {
             animate={isInView ? "show" : "hidden"}
           >
             <motion.div variants={fadeUp} className="mb-6">
-              <span className="text-xs text-[#f97316] font-medium tracking-widest uppercase">
+              <span className="text-xs text-accent font-medium tracking-widest uppercase">
                 Who We Are
               </span>
             </motion.div>
@@ -70,7 +70,7 @@ export default function About() {
             >
               Where African ambition
               <br />
-              <span className="text-[#f97316]">meets engineering.</span>
+              <span className="text-accent">meets engineering.</span>
             </motion.h2>
 
             <motion.p
@@ -93,9 +93,9 @@ export default function About() {
 
             <motion.div variants={fadeUp} className="flex gap-8">
               {[
-                { num: "2020", label: "Founded" },
+                { num: "2012", label: "Founded" },
                 { num: "Ghana", label: "Based in" },
-                { num: "12+", label: "Partner Universities" },
+                { num: "5+", label: "Partner Universities" },
               ].map((item) => (
                 <div key={item.label}>
                   <div className="text-2xl font-bold text-white">
@@ -120,10 +120,10 @@ export default function About() {
                 <motion.div
                   key={pillar.title}
                   variants={fadeUp}
-                  className="group p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.05] hover:border-white/10 transition-all duration-300"
+                  className="group p-6 rounded-2xl border border-white/5 bg-white/2 hover:bg-white/5 hover:border-white/10 transition-all duration-300"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#f97316]/10 flex items-center justify-center mb-4 group-hover:bg-[#f97316]/20 transition-colors">
-                    <Icon size={20} className="text-[#f97316]" />
+                  <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+                    <Icon size={20} className="text-accent" />
                   </div>
                   <h3 className="text-white font-semibold text-sm mb-2">
                     {pillar.title}

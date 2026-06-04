@@ -242,13 +242,11 @@ export const FOOTER_LINKS = {
     { label: "Our Programs", href: "#programs" },
     { label: "Projects", href: "#projects" },
     { label: "Events", href: "#events" },
-    { label: "Blog", href: "#blog" },
   ],
   community: [
     { label: "Join CG", href: "/join" },
-    { label: "GitHub", href: "https://github.com" },
     { label: "Newsletter", href: "#newsletter" },
-    { label: "Alumni Network", href: "#alumni" },
+    { label: "Alumni Network", href: "/alumni" },
   ],
   resources: [
     { label: "Maker Labs", href: "#labs" },

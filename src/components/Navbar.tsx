@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import { NAV_LINKS } from "@/lib/data";
 
 export default function Navbar() {
@@ -41,9 +42,13 @@ export default function Navbar() {
               aria-label="Creativity Group – go to home"
               className="flex items-center gap-2.5 group"
             >
-              <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center font-bold text-white text-sm tracking-tight transition-transform group-hover:scale-105">
-                CG
-              </div>
+              <Image
+                src="/creativity_group_logo.jpeg"
+                alt="Creativity Group"
+                width={36}
+                height={36}
+                className="rounded-full transition-transform group-hover:scale-105"
+              />
               <span className="font-semibold text-white text-sm hidden sm:block tracking-tight">
                 Creativity Group
               </span>

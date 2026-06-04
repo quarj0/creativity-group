@@ -89,7 +89,7 @@ export default function SponsorshipPage() {
         ].map((s) => (
           <div
             key={s.label}
-            className="text-center p-4 rounded-xl border border-white/5 bg-white/[0.02]"
+            className="text-center p-4 rounded-xl border border-white/5 bg-white/2"
           >
             <div className="text-xl font-bold text-white">{s.num}</div>
             <div className="text-zinc-500 text-xs mt-0.5">{s.label}</div>

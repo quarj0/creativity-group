@@ -1,14 +1,22 @@
 import Link from "next/link";
-import { GitBranch, X, Globe, SquarePlay, Mail } from "lucide-react";
+import Image from "next/image";
+import { X, SquarePlay, Mail } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa";
 import { FOOTER_LINKS } from "@/lib/data";
 import NewsletterForm from "@/components/NewsletterForm";
 
 function FooterLink({ href, label }: { href: string; label: string }) {
   const isExternal = href.startsWith("http");
-  const className = "text-zinc-500 hover:text-zinc-200 text-sm transition-colors duration-200";
+  const className =
+    "text-zinc-500 hover:text-zinc-200 text-sm transition-colors duration-200";
   if (isExternal) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+      >
         {label}
       </a>
     );
@@ -37,34 +45,54 @@ export default function Footer() {
           <div className="col-span-2 sm:col-span-3 lg:col-span-2">
             {/* Logo */}
             <div className="flex items-center gap-2.5 mb-5">
-              <div className="w-9 h-9 rounded-lg bg-accent flex items-center justify-center font-bold text-white text-sm">
-                CG
-              </div>
+              <Image
+                src="/creativity_group_logo.jpeg"
+                alt="Creativity Group"
+                width={36}
+                height={36}
+                className="rounded-full"
+              />
               <span className="font-semibold text-white text-sm tracking-tight">
                 Creativity Group
               </span>
             </div>
 
             <p className="text-zinc-500 text-sm leading-relaxed max-w-xs mb-6">
-              Ghana&apos;s premier innovation and maker community. Building the next
-              generation of African engineers, entrepreneurs, and change-makers.
+              Ghana&apos;s premier innovation and maker community. Building the
+              next generation of African engineers, entrepreneurs, and
+              change-makers.
             </p>
 
             {/* Social links */}
             <div className="flex items-center gap-3">
               {[
-                { Icon: GitBranch, label: "GitHub", href: "https://github.com" },
                 { Icon: X, label: "Twitter / X", href: "https://x.com" },
-                { Icon: Globe, label: "LinkedIn", href: "https://linkedin.com" },
-                { Icon: SquarePlay, label: "YouTube", href: "https://youtube.com" },
-                { Icon: Mail, label: "Email", href: "mailto:hello@creativitygroup.org" },
+                {
+                  Icon: FaLinkedin,
+                  label: "LinkedIn",
+                  href: "https://www.linkedin.com/company/creativity-group/",
+                },
+                {
+                  Icon: SquarePlay,
+                  label: "YouTube",
+                  href: "https://youtube.com",
+                },
+                {
+                  Icon: Mail,
+                  label: "Email",
+                  href: "mailto:hello@creativitygroup.org",
+                },
               ].map(({ Icon, label, href }) => (
                 <a
                   key={label}
                   href={href}
                   aria-label={label}
                   target={href.startsWith("mailto") ? undefined : "_blank"}
-                  rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                  rel={
+                    href.startsWith("mailto")
+                      ? undefined
+                      : "noopener noreferrer"
+                  }
                   className="w-9 h-9 rounded-lg border border-white/5 bg-white/2 hover:bg-white/6 hover:border-white/10 flex items-center justify-center text-zinc-500 hover:text-white transition-all duration-200"
                 >
                   <Icon size={15} />
@@ -101,8 +129,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Resources */}
-          <div>
+          {/* Resources — hidden for now */}
+          {/* <div>
             <h4 className="text-white text-xs font-semibold tracking-widest uppercase mb-5">
               Resources
             </h4>
@@ -113,7 +141,7 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
         </div>
 
         {/* Newsletter strip */}
