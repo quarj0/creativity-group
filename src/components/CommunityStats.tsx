@@ -2,7 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { COMMUNITY_STATS } from "@/lib/data";
+
+type CommunityStat = {
+  value: number;
+  label: string;
+  suffix: string;
+};
 
 function useCounter(target: number, duration = 2000, active = false) {
   const [count, setCount] = useState(0);
@@ -31,7 +36,7 @@ function StatCard({
   active,
   index,
 }: {
-  stat: (typeof COMMUNITY_STATS)[number];
+  stat: CommunityStat;
   active: boolean;
   index: number;
 }) {
@@ -53,7 +58,7 @@ function StatCard({
   );
 }
 
-export default function CommunityStats() {
+export default function CommunityStats({ stats = [] }: { stats?: CommunityStat[] }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
@@ -96,12 +101,17 @@ export default function CommunityStats() {
           </p>
         </motion.div>
 
-        {/* Stats grid */}
-        <div className="grid grid-cols-3 lg:grid-cols-5 gap-4">
-          {COMMUNITY_STATS.map((stat, i) => (
-            <StatCard key={stat.label} stat={stat} active={isInView} index={i} />
-          ))}
-        </div>
+        {stats.length === 0 ? (
+          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 text-center text-sm text-zinc-500">
+            Community metrics have not been published yet.
+          </div>
+        ) : (
+          <div className="grid grid-cols-3 lg:grid-cols-5 gap-4">
+            {stats.map((stat, i) => (
+              <StatCard key={stat.label} stat={stat} active={isInView} index={i} />
+            ))}
+          </div>
+        )}
 
         {/* Bottom quote */}
         <motion.div

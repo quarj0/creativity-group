@@ -80,23 +80,6 @@ export default function SponsorshipPage() {
       highlight="Creativity Group."
       description="Support Ghana's most active innovation community. Partner with us to put your brand in front of the country's best young engineers and entrepreneurs."
     >
-      {/* Value props */}
-      <div className="grid grid-cols-3 gap-3 mb-8">
-        {[
-          { num: "2,400+", label: "Community members" },
-          { num: "12", label: "Campus chapters" },
-          { num: "95+", label: "Events per year" },
-        ].map((s) => (
-          <div
-            key={s.label}
-            className="text-center p-4 rounded-xl border border-white/5 bg-white/2"
-          >
-            <div className="text-xl font-bold text-white">{s.num}</div>
-            <div className="text-zinc-500 text-xs mt-0.5">{s.label}</div>
-          </div>
-        ))}
-      </div>
-
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid sm:grid-cols-2 gap-4">
           <Field

@@ -135,30 +135,6 @@ export default function Hero() {
           </button>
         </motion.div>
 
-        {/* Social proof numbers */}
-        <motion.div
-          variants={fadeUp}
-          custom={4}
-          initial="hidden"
-          animate="show"
-          className="mt-20 flex flex-wrap items-center justify-center gap-8 lg:gap-16"
-        >
-          {[
-            { value: "2,400+", label: "Community Members" },
-            { value: "180+", label: "Projects Shipped" },
-            { value: "5", label: "Campuses Across Ghana" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-white tabular-nums">
-                {stat.value}
-              </div>
-              <div className="text-xs text-zinc-500 mt-1 tracking-wide">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
         {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0 }}

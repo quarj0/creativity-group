@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight, Users2, Calendar } from "lucide-react";
-import { FEATURED_PROJECTS } from "@/lib/data";
+import type { Project } from "@/lib/backend";
 
 const cardVariant = {
   hidden: { opacity: 0, y: 40 },
@@ -15,7 +15,15 @@ const cardVariant = {
   }),
 };
 
-export default function FeaturedProjects() {
+function EmptyProjects() {
+  return (
+    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 text-sm text-zinc-500">
+      No featured projects have been published yet.
+    </div>
+  );
+}
+
+export default function FeaturedProjects({ projects }: { projects: Project[] }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -55,20 +63,22 @@ export default function FeaturedProjects() {
           </motion.button>
         </div>
 
-        {/* Projects grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {FEATURED_PROJECTS.map((project, i) => (
-            <motion.div
-              key={project.id}
-              custom={i}
-              variants={cardVariant}
-              initial="hidden"
-              animate={isInView ? "show" : "hidden"}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") e.currentTarget.click(); }}
-              className="group relative flex flex-col rounded-2xl border border-white/5 bg-card hover:border-white/10 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
-            >
+        {projects.length === 0 ? (
+          <EmptyProjects />
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {projects.map((project, i) => (
+              <motion.div
+                key={project.id}
+                custom={i}
+                variants={cardVariant}
+                initial="hidden"
+                animate={isInView ? "show" : "hidden"}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") e.currentTarget.click(); }}
+                className="group relative flex flex-col rounded-2xl border border-white/5 bg-card hover:border-white/10 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/50 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+              >
               {/* Placeholder image area */}
               <div
                 className="relative h-44 overflow-hidden shrink-0"
@@ -136,9 +146,10 @@ export default function FeaturedProjects() {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

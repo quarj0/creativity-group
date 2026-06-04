@@ -32,7 +32,7 @@ const pillars = [
   {
     icon: Globe,
     title: "Community-Driven",
-    desc: "2,400+ members across 5 campuses. The network is the superpower.",
+    desc: "We grow through collaboration, mentorship, and shared access to opportunity.",
   },
   {
     icon: Target,
@@ -91,20 +91,7 @@ export default function About() {
               consume technology — it builds it.
             </motion.p>
 
-            <motion.div variants={fadeUp} className="flex gap-8">
-              {[
-                { num: "2012", label: "Founded" },
-                { num: "Ghana", label: "Based in" },
-                { num: "5+", label: "Partner Universities" },
-              ].map((item) => (
-                <div key={item.label}>
-                  <div className="text-2xl font-bold text-white">
-                    {item.num}
-                  </div>
-                  <div className="text-xs text-zinc-500 mt-1">{item.label}</div>
-                </div>
-              ))}
-            </motion.div>
+            <motion.div variants={fadeUp} className="h-px w-24 bg-accent/40" />
           </motion.div>
 
           {/* Right — pillars grid */}

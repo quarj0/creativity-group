@@ -13,7 +13,7 @@ import {
   Users,
   Microscope,
 } from "lucide-react";
-import { WHAT_WE_DO } from "@/lib/data";
+import type { Program } from "@/lib/backend";
 
 const ICONS: Record<string, React.ElementType> = {
   Cpu,
@@ -39,7 +39,15 @@ const stagger = {
   show: { transition: { staggerChildren: 0.07 } },
 };
 
-export default function WhatWeDo() {
+function EmptyPrograms() {
+  return (
+    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 text-sm text-zinc-500">
+      No programs have been published yet.
+    </div>
+  );
+}
+
+export default function WhatWeDo({ programs }: { programs: Program[] }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -69,39 +77,42 @@ export default function WhatWeDo() {
           </h2>
         </motion.div>
 
-        {/* Grid */}
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate={isInView ? "show" : "hidden"}
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
-        >
-          {WHAT_WE_DO.map((item) => {
-            const Icon = ICONS[item.icon];
-            return (
-              <motion.div
-                key={item.title}
-                variants={fadeUp}
-                className={`group relative p-6 rounded-2xl border border-white/5 bg-gradient-to-br ${item.color} hover:border-white/10 transition-all duration-300 cursor-default overflow-hidden`}
-              >
-                {/* Hover glow */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/[0.02] rounded-2xl" />
+        {programs.length === 0 ? (
+          <EmptyPrograms />
+        ) : (
+          <motion.div
+            variants={stagger}
+            initial="hidden"
+            animate={isInView ? "show" : "hidden"}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
+          >
+            {programs.map((item) => {
+              const Icon = ICONS[item.icon];
+              return (
+                <motion.div
+                  key={item.id ?? item.title}
+                  variants={fadeUp}
+                  className={`group relative p-6 rounded-2xl border border-white/5 bg-gradient-to-br ${item.color} hover:border-white/10 transition-all duration-300 cursor-default overflow-hidden`}
+                >
+                  {/* Hover glow */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/[0.02] rounded-2xl" />
 
-                <div className="relative z-10">
-                  <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                    {Icon && <Icon size={20} className="text-zinc-300" />}
+                  <div className="relative z-10">
+                    <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                      {Icon && <Icon size={20} className="text-zinc-300" />}
+                    </div>
+                    <h3 className="text-white font-semibold text-sm mb-2 leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-zinc-500 text-xs leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
-                  <h3 className="text-white font-semibold text-sm mb-2 leading-tight">
-                    {item.title}
-                  </h3>
-                  <p className="text-zinc-500 text-xs leading-relaxed">
-                    {item.description}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        )}
       </div>
     </section>
   );

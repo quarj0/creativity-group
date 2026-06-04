@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { MapPin, Users2, ArrowUpRight, CalendarDays } from "lucide-react";
-import { EVENTS } from "@/lib/data";
+import type { Event } from "@/lib/backend";
 
 const cardVariant = {
   hidden: { opacity: 0, y: 30 },
@@ -21,7 +21,15 @@ const TYPE_COLORS: Record<string, string> = {
   "Online Challenge": "#10b981",
 };
 
-export default function Events() {
+function EmptyEvents() {
+  return (
+    <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 text-sm text-zinc-500">
+      No upcoming events have been published yet.
+    </div>
+  );
+}
+
+export default function Events({ events }: { events: Event[] }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -62,22 +70,24 @@ export default function Events() {
           </motion.button>
         </div>
 
-        {/* Events grid */}
-        <div className="grid sm:grid-cols-2 gap-5">
-          {EVENTS.map((event, i) => {
-            const typeColor = TYPE_COLORS[event.type] || "#f97316";
-            return (
-              <motion.div
-                key={event.id}
-                custom={i}
-                variants={cardVariant}
-                initial="hidden"
-                animate={isInView ? "show" : "hidden"}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") e.currentTarget.click(); }}
-                className="group relative p-6 rounded-2xl border border-white/5 bg-card hover:border-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/40 cursor-pointer overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
-              >
+        {events.length === 0 ? (
+          <EmptyEvents />
+        ) : (
+          <div className="grid sm:grid-cols-2 gap-5">
+            {events.map((event, i) => {
+              const typeColor = TYPE_COLORS[event.type] || "#f97316";
+              return (
+                <motion.div
+                  key={event.id}
+                  custom={i}
+                  variants={cardVariant}
+                  initial="hidden"
+                  animate={isInView ? "show" : "hidden"}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") e.currentTarget.click(); }}
+                  className="group relative p-6 rounded-2xl border border-white/5 bg-card hover:border-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/40 cursor-pointer overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
+                >
                 {/* Left accent line */}
                 <div
                   className="absolute left-0 top-6 bottom-6 w-0.5 rounded-full opacity-60 group-hover:opacity-100 transition-opacity"
@@ -130,10 +140,11 @@ export default function Events() {
                 <div className="absolute top-5 right-5 w-7 h-7 rounded-full bg-white/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <ArrowUpRight size={13} className="text-zinc-300" />
                 </div>
-              </motion.div>
-            );
-          })}
-        </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </section>
   );

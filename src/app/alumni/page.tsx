@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, MapPin, GraduationCap, Users } from "lucide-react";
+import { ArrowLeft, MapPin, GraduationCap } from "lucide-react";
 
 const UNIVERSITIES = [
   {
@@ -94,24 +94,6 @@ export default function AlumniPage() {
             Our alumni and active chapters are making an impact from Kumasi to
             Cape Coast — building Africa&apos;s next generation of innovators.
           </p>
-        </div>
-
-        {/* Stats row */}
-        <div className="grid grid-cols-3 gap-4 mb-14">
-          {[
-            { Icon: GraduationCap, value: "6", label: "Partner Universities" },
-            { Icon: Users, value: "2,400+", label: "Alumni & Members" },
-            { Icon: MapPin, value: "4", label: "Regions Covered" },
-          ].map(({ Icon, value, label }) => (
-            <div
-              key={label}
-              className="p-5 rounded-2xl border border-white/5 bg-white/[0.02] flex flex-col items-center text-center"
-            >
-              <Icon size={20} className="text-accent mb-3" />
-              <div className="text-2xl font-bold text-white">{value}</div>
-              <div className="text-xs text-zinc-500 mt-1">{label}</div>
-            </div>
-          ))}
         </div>
 
         {/* University cards */}

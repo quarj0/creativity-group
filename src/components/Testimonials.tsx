@@ -3,7 +3,14 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Quote } from "lucide-react";
-import { TESTIMONIALS } from "@/lib/data";
+
+type Testimonial = {
+  id: number;
+  name: string;
+  role: string;
+  cohort: string;
+  quote: string;
+};
 
 const cardVariant = {
   hidden: { opacity: 0, y: 30 },
@@ -15,9 +22,21 @@ const cardVariant = {
 };
 
 const AVATAR_COLORS = ["#f97316", "#3b82f6", "#8b5cf6", "#10b981"];
-const AVATAR_INITIALS = ["AM", "KA", "AD", "EO"];
 
-export default function Testimonials() {
+function getInitials(name: string) {
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+}
+
+export default function Testimonials({
+  testimonials = [],
+}: {
+  testimonials?: Testimonial[];
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -43,17 +62,21 @@ export default function Testimonials() {
           </h2>
         </motion.div>
 
-        {/* Cards */}
-        <div className="grid sm:grid-cols-2 gap-5">
-          {TESTIMONIALS.map((t, i) => (
-            <motion.div
-              key={t.id}
-              custom={i}
-              variants={cardVariant}
-              initial="hidden"
-              animate={isInView ? "show" : "hidden"}
-              className="relative group p-8 rounded-2xl border border-white/5 bg-[#18181b] hover:border-white/10 transition-all duration-300"
-            >
+        {testimonials.length === 0 ? (
+          <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 text-sm text-zinc-500">
+            Testimonials have not been published yet.
+          </div>
+        ) : (
+          <div className="grid sm:grid-cols-2 gap-5">
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={t.id}
+                custom={i}
+                variants={cardVariant}
+                initial="hidden"
+                animate={isInView ? "show" : "hidden"}
+                className="relative group p-8 rounded-2xl border border-white/5 bg-[#18181b] hover:border-white/10 transition-all duration-300"
+              >
               {/* Quote icon */}
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
                 <Quote size={40} className="text-[#f97316]" />
@@ -66,12 +89,11 @@ export default function Testimonials() {
 
               {/* Author */}
               <div className="flex items-center gap-4">
-                {/* Avatar placeholder */}
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center text-white text-xs font-bold flex-shrink-0"
                   style={{ background: AVATAR_COLORS[i % AVATAR_COLORS.length] }}
                 >
-                  {AVATAR_INITIALS[i % AVATAR_INITIALS.length]}
+                  {getInitials(t.name)}
                 </div>
                 <div>
                   <div className="text-white font-semibold text-sm">{t.name}</div>
@@ -79,9 +101,10 @@ export default function Testimonials() {
                   <div className="text-zinc-600 text-xs">{t.cohort}</div>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
