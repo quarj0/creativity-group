@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { ArrowLeft, MapPin, Users2, CalendarDays, Clock } from "lucide-react";
 import { getEvent, getAllEvents } from "@/lib/backend";
 
+export const runtime = "edge";
+
 const TYPE_COLORS: Record<string, string> = {
   Hackathon: "#f97316",
   Exhibition: "#3b82f6",
