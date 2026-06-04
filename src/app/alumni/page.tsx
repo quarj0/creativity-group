@@ -1,5 +1,17 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, MapPin, GraduationCap } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Alumni Network",
+  description:
+    "Meet Creativity Group alumni making an impact across Ghana's top universities — KNUST, UENR, and beyond.",
+  openGraph: {
+    title: "Alumni Network | Creativity Group",
+    description:
+      "Meet Creativity Group alumni making an impact across Ghana's top universities — KNUST, UENR, and beyond.",
+  },
+};
 
 const UNIVERSITIES = [
   {

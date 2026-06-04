@@ -53,6 +53,8 @@ export default function Navbar() {
                 alt="Creativity Group"
                 width={36}
                 height={36}
+                loading="eager"
+                priority
                 className="rounded-full transition-transform group-hover:scale-105"
               />
               <span className="font-semibold text-white text-sm hidden sm:block tracking-tight">
@@ -76,7 +78,7 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-3">
               <button
-                onClick={() => handleNavClick("#community")}
+                onClick={() => handleNavClick("/join")}
                 className="px-5 py-2.5 bg-accent hover:bg-accent-hover text-white text-sm font-medium rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-orange-500/25"
               >
                 Join Community
@@ -117,7 +119,7 @@ export default function Navbar() {
               ))}
               <div className="pt-4 mt-2 border-t border-white/5">
                 <button
-                  onClick={() => handleNavClick("#community")}
+                  onClick={() => handleNavClick("/join")}
                   className="w-full py-3 bg-accent hover:bg-accent-hover text-white text-sm font-medium rounded-lg transition-colors"
                 >
                   Join Community

@@ -14,8 +14,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://creativitygroup.org";
+
 export const metadata: Metadata = {
-  title: "Creativity Group — Building Africa's Next Generation of Innovators",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Creativity Group — Building Africa's Next Generation of Innovators",
+    template: "%s | Creativity Group",
+  },
   description:
     "Creativity Group is a Ghana-based innovation and maker community empowering young Africans through technology, STEM, engineering, and entrepreneurship.",
   keywords: [
@@ -32,6 +38,27 @@ export const metadata: Metadata = {
     description:
       "Empowering the next generation of African innovators, makers, engineers, and entrepreneurs.",
     type: "website",
+    url: siteUrl,
+    siteName: "Creativity Group",
+    images: [
+      {
+        url: "/creativity_group_logo.jpeg",
+        width: 512,
+        height: 512,
+        alt: "Creativity Group Logo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Creativity Group — Africa's Innovation & Maker Community",
+    description:
+      "Empowering the next generation of African innovators, makers, engineers, and entrepreneurs.",
+    images: ["/creativity_group_logo.jpeg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
