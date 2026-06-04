@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { forwardBackendPost } from "@/lib/backend";
 
 export async function POST(request: Request) {
