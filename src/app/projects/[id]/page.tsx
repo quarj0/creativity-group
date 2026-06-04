@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowLeft, Users2, Calendar, Tag } from "lucide-react";
-import { getProject, getAllProjects } from "@/lib/backend";
+import { getProject } from "@/lib/backend";
 
 export const runtime = "edge";
 
@@ -19,10 +19,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export async function generateStaticParams() {
-  const projects = await getAllProjects();
-  return projects.map((p) => ({ id: String(p.id) }));
-}
 
 export default async function ProjectDetailPage({ params }: Props) {
   const { id } = await params;

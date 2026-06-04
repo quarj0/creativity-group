@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowLeft, MapPin, Users2, CalendarDays, Clock } from "lucide-react";
-import { getEvent, getAllEvents } from "@/lib/backend";
+import { getEvent } from "@/lib/backend";
 
 export const runtime = "edge";
 
@@ -26,10 +26,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export async function generateStaticParams() {
-  const events = await getAllEvents();
-  return events.map((e) => ({ id: String(e.id) }));
-}
 
 export default async function EventDetailPage({ params }: Props) {
   const { id } = await params;
