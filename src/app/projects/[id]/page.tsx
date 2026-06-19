@@ -4,8 +4,6 @@ import type { Metadata } from "next";
 import { ArrowLeft, Users2, Calendar, Tag } from "lucide-react";
 import { getProject } from "@/lib/backend";
 
-export const runtime = "edge";
-
 type Props = { params: Promise<{ id: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
